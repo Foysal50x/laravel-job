@@ -2,9 +2,9 @@
 
 namespace Faisal50x\LaravelJob\Tests;
 
+use Faisal50x\LaravelJob\LaravelJobServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Faisal50x\LaravelJob\LaravelJobServiceProvider;
 
 class TestCase extends Orchestra
 {

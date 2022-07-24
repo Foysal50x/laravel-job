@@ -2,9 +2,9 @@
 
 namespace Faisal50x\LaravelJob;
 
+use Faisal50x\LaravelJob\Commands\LaravelJobCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Faisal50x\LaravelJob\Commands\LaravelJobCommand;
 
 class LaravelJobServiceProvider extends PackageServiceProvider
 {
