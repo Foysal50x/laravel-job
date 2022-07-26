@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Faisal50x\LaravelJob\Enums;
 
@@ -10,6 +12,5 @@ enum JobType: string
 
     case FULL_TIME = 'full-time';
     case PART_TIME = 'part-time';
-    case INTERN    = 'intern';
-
+    case INTERN = 'intern';
 }

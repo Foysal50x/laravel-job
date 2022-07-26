@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Faisal50x\LaravelJob\Enums;
 
@@ -12,12 +14,12 @@ enum JobPreferenceEnum: string
     case REMOTE = 'remote';
     case HYBRID = 'hybrid';
 
-    public function icon():string
+    public function icon(): string
     {
         return match ($this) {
-            static::ONSITE => "🏫",
-            static::REMOTE => "🧑‍💻",
-            static::HYBRID => "🏫 + 🧑‍💻",
+            static::ONSITE => '🏫',
+            static::REMOTE => '🧑‍💻',
+            static::HYBRID => '🏫 + 🧑‍💻',
         };
     }
 }
