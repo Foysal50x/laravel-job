@@ -3,17 +3,61 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Faisal50x\LaravelJob\Enums\{JobPreferenceEnum, JobType, JobStatus};
 
 return new class extends Migration
 {
+    private string $prefix = 'jb_';
+
     public function up()
     {
-        Schema::create('laravel_jobs', function (Blueprint $table) {
+        Schema::create("{$this->prefix}_locations", function (Blueprint $table) {
             $table->id();
-
-            // add fields
-
+            $table->string('name')->index();
+            $table->string('address')->nullable();
+            $table->point('location');
             $table->timestamps();
         });
+        Schema::create("{$this->prefix}_tags", function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->index();
+            $table->timestamps();
+        });
+        Schema::create("{$this->prefix}_jobs", function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('location_id')->constrained('locations')->onDelete('cascade');
+            $table->string('title')->index();
+            $table->text('overview');
+            $table->text('responsibilities');
+            $table->text('benefits')->nullable();
+            $table->unsignedInteger('number_of_vacancy')->default(1);
+            $table->date('application_deadline');
+            $table->date('publish_on');
+            $table->enum('job_preference', JobPreferenceEnum::values())->default(JobPreferenceEnum::ONSITE->value);
+            $table->enum('job_type', JobType::values())->default(JobType::FULL_TIME->value);
+            $table->json('salary_range')->default(json_encode([
+                "min" => 0,
+                "max" => 0
+            ]));
+            $table->json('tags')->default(json_encode([]));
+            $table->enum('status', JobStatus::values())->default(JobStatus::DRAFT->value);
+            $table->timestamps();
+        });
+
+        Schema::create("{$this->prefix}_job_requirements", function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('job_id')->constrained('jobs')->onDelete('cascade');
+            $table->string('title')->index();
+            $table->text('details');
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::drop("{$this->prefix}_locations");
+        Schema::drop("{$this->prefix}_tags");
+        Schema::drop("{$this->prefix}_jobs");
+        Schema::drop("{$this->prefix}_job_requirements");
     }
 };
