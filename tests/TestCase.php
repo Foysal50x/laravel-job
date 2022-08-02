@@ -29,9 +29,7 @@ class TestCase extends Orchestra
     {
         Schema::dropAllTables();
 
-
         $migration = include __DIR__.'/../database/migrations/create_job_table.php.stub';
         $migration->up();
-
     }
 }
