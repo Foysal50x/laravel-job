@@ -4,6 +4,7 @@ namespace Faisal50x\LaravelJob\Tests;
 
 use Faisal50x\LaravelJob\LaravelJobServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -26,11 +27,11 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app)
     {
-        config()->set('database.default', 'testing');
+        Schema::dropAllTables();
 
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_laravel-job_table.php.stub';
+
+        $migration = include __DIR__.'/../database/migrations/create_job_table.php.stub';
         $migration->up();
-        */
+
     }
 }
