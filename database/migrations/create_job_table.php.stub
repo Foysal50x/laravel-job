@@ -36,7 +36,7 @@ return new class extends Migration
             $table->enum('job_preference', JobPreferenceEnum::values())->default(JobPreferenceEnum::ONSITE->value);
             $table->enum('job_type', JobType::values())->default(JobType::FULL_TIME->value);
             $table->json('salary_range');
-            $table->json('tags'));
+            $table->json('tags');
             $table->enum('status', JobStatus::values())->default(JobStatus::DRAFT->value);
             $table->timestamps();
         });
