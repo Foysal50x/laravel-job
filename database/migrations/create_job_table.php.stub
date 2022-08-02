@@ -25,7 +25,7 @@ return new class extends Migration
         });
         Schema::create("{$this->prefix}_jobs", function (Blueprint $table) {
             $table->id();
-            $table->foreignId('location_id')->constrained('locations')->onDelete('cascade');
+            $table->foreignId('location_id')->constrained("{$this->prefix}_locations")->onDelete('cascade');
             $table->string('title')->index();
             $table->text('overview');
             $table->text('responsibilities');
@@ -43,7 +43,7 @@ return new class extends Migration
 
         Schema::create("{$this->prefix}_job_requirements", function (Blueprint $table) {
             $table->id();
-            $table->foreignId('job_id')->constrained('jobs')->onDelete('cascade');
+            $table->foreignId('job_id')->constrained("{$this->prefix}_jobs")->onDelete('cascade');
             $table->string('title')->index();
             $table->text('details');
             $table->timestamps();
