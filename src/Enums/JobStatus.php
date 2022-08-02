@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Faisal50x\LaravelJob\Enums;
 
@@ -8,7 +10,7 @@ enum JobStatus: string
 {
     use Values;
 
-    case DRAFT     = 'draft';
-    case CLOSED    = 'closed';
+    case DRAFT = 'draft';
+    case CLOSED = 'closed';
     case PUBLISHED = 'published';
 }
