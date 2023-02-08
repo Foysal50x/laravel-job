@@ -19,7 +19,7 @@ class LaravelJobServiceProvider extends PackageServiceProvider
             ->name('laravel-job')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_laravel-job_table')
+            ->hasMigration('create_job_table')
             ->hasCommand(LaravelJobCommand::class);
     }
 }
